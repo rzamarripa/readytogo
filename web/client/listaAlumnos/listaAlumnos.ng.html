@@ -1,0 +1,31 @@
+<h2>Mis Alumnos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="30%"><div class="text-center">Alumno</div></th>
+					<th width="10%"><div class="text-center">Estado</div></th>
+				</tr>
+			</thead>
+			<tbody>
+		    <tr ng-repeat="alumno in la.alumnos">
+		    	<td>{{la.getAlumno(alumno._id)}} </td>
+			    <td>
+				    <div class="text-center">
+				    	<!--<span ng-if="alumno.estatus" class="label label-success">
+							  Recogiendo
+							</span>
+							-->
+							<a href="#" ng-click="la.cambiarEstatus(alumno._id)">
+							    				<i class="fa fa-check"></i> Enviando
+							</a>
+				    </div>
+			    </td>
+		    </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
