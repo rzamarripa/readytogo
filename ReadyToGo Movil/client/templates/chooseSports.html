@@ -1,0 +1,10 @@
+<ion-view view-title="Choose Sport" class="background">	
+  <ion-content>
+    <ion-list>
+    	<a class="item item-thumbnail-left" ng-click="chooseSports.linker(sport._id, chooseSports.selectedTabIndex)" ng-repeat="sport in chooseSports.sports">
+	      <img src="images/{{sport.image}}">
+	      <h2>{{sport.name}}</h2>
+	    </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

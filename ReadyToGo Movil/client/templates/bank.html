@@ -1,0 +1,11 @@
+<ion-view view-title="Bank" class="background">
+  <ion-content>
+	 <div class="list card" ng-repeat="(key, pack) in bank.packs">
+	  <a ng-click="bank.buy(pack)" class="item">
+	  	<h2><strong>Package #{{key+1}}</strong></h2>
+	    <h2>{{pack.credits}} credit for {{pack.price | currency}}</h2>
+	  </a>
+
+	</div>
+  </ion-content>
+</ion-view>

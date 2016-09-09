@@ -1,0 +1,41 @@
+<ion-view view-title="Inicio" class="background">	
+
+<!--
+	<ion-nav-buttons side="left" ng-show="false">
+		<button ui-sref="tabs.home-bank" class="button button-clear " >Bank</button>
+	</ion-nav-buttons>
+	
+	<ion-nav-buttons side="right" ng-show="false">
+	 	<button ui-sref="tabs.home-feedback" class="button button-clear " >Feedback</button> 
+	</ion-nav-buttons>
+-->
+  <ion-content>
+  	<ion-slide-box >
+		  <ion-slide ng-repeat="tournament in home.tournaments">
+				<div class="box">
+					<h4 class="title textNextTournaments">Next Tournament</h4>
+					<h5 class="textNextTournaments">{{tournament.title}}</h5>				
+					<p id="countdown"></p>
+				</div>
+		  </ion-slide>		  
+		</ion-slide-box>
+		<!--
+		<div class="row">
+			<div class="col">
+				<a ui-sref="tabs.home-chooseSports" class="button button-positive button-block">Create league</a>
+			</div>
+			<div class="col">
+				<a ui-sref="tabs.home-joinLeague" class="button button-positive button-block">Join league</a>
+			</div>
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br>
+
+		<div class="row">
+			<div class="col">
+				<button ng-click="modal.show()" class="button button-full button-positive button-dark">How to play</button>    
+			</div>
+		</div>
+    -->
+  </ion-content>
+
+</ion-view>

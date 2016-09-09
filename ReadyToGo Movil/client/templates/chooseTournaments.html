@@ -1,0 +1,12 @@
+<ion-view view-title="Choose Tournaments" class="background">	
+  <ion-content>
+    <div class="list">
+	    <a ng-click="chooseTournaments.linker(chooseTournaments.selectedTabIndex,tournament._id, tournament.competition_id)" class="item item-thumbnail-left" ng-repeat="tournament in chooseTournaments.tournaments">
+	      <img class="img img-" src="{{tournament.logo}}">
+	      <h2>{{tournament.name}}</h2>
+	      <p>Start date: {{tournament.start | date:short}} - Finish date: {{tournament.end | date: short}}</p>
+	    </a>
+	</div>
+  </ion-content>
+</ion-view>
+

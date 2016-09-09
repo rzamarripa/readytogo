@@ -1,0 +1,25 @@
+{
+  "servers": [
+    {
+      "host": "127.0.0.1",
+      "username": "",
+      "password": "",
+      "env": {}
+    }
+  ],
+
+  "setupMongo": true,
+
+  "appName": "Ready to Go",
+
+  "app": ".",
+
+  "env": {
+    "PORT": 3001,
+    "MONGO_URL": "mongodb://localhost:3001"
+  },
+
+  "deployCheckWaitTime": 60,
+
+  "enableUploadProgressBar": true
+}

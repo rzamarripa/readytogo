@@ -1,0 +1,41 @@
+<ion-view view-title="Join Leagues" class="background">
+<ion-content>
+	<div class="list">
+	  <label class="item item-input">
+	    <span class="input-label">Search</span>
+	    <input type="text" ng-model="joinLeague.searchLeague">
+	  </label>
+	</div>
+	<button ng-click="joinLeague.search()" class="button button-full button-positive">
+	  Search
+	</button>
+	
+	<div class="list card" ng-show="joinLeague.show">
+
+	  <div class="item item-avatar">
+	    <img src="mcfly.jpg">
+	    <h2>{{joinLeague.league.name}}</h2>
+	    <p>Owner: {{joinLeague.league.owner}}</p>
+	    <span class="item-note">
+			Credits Limit: {{joinLeague.league.maxCredits}}
+		</span>
+	  </div>
+
+	  <div class="item item-body">
+	    <div class="list">
+		  <label class="item item-input item-select">
+		    <div class="input-label">
+		      Select the winning team
+			  </div>
+		    <select ng-model="joinLeague.join.teamwinner">
+		      <option ng-repeat="team in joinLeague.teams" value="{{team._id}}">{{team.name}}</option>
+		    </select>
+		  </label>
+		  <button ng-show="joinLeague.showJoin" ng-click="joinLeague.join()" class="button button-full button-positive">
+	  		Join
+		</button>
+		</div>
+	  </div>
+	</div>
+</ion-content>
+</ion-view>

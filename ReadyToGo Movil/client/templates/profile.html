@@ -1,0 +1,47 @@
+<ion-view view-title="Profile" class="background">	
+	<ion-nav-buttons side="right" ng-show="false">
+	</ion-nav-buttons>
+
+	<ion-content has-header="true" has-tabs="true">			
+		<div ng-if="!profile.edit" class="list card">
+		  <div class="item item-thumbnail-left">
+		    <img ng-src="{{profile.user.profile.picture || images/unknown.jpg}}">
+		    <h2>{{profile.user.profile.name}}</h2>
+		    <h3>{{profile.user.email}}</h3>
+		    <button class="button button-positive button-small" ng-click="profile.editar()">Edit</button>
+		    <button class="button button-assertive button-small" ng-click="profile.logout()">Logout</button>
+		    <p><strong>{{profile.user.profile.credits || 0}}</strong> Credits left</p>
+		  </div>
+		</div>
+
+		<div ng-if="profile.edit" class="list card">
+		  <div class="item item-thumbnail-left">
+		    <img ng-src="{{profile.userEdit.profile.picture || images/unknown.jpg}}">
+		    <form>
+		    <input type="text" class="form-control" placeholder="Name" ng-model="profile.userEdit.profile.name">
+		    </form>
+		    <button class="button button-assertive button-small" ng-click="profile.cancel()">Cancel</button>		    
+		    <button class="button button-positive button-small" ng-click="profile.takePicture()">Take</button>
+		    <button class="button button-positive button-small" ng-click="profile.actualizar()">Confirm</button>
+		  </div>
+		</div>
+
+		<div class="card">
+			<div class="item item-divider">
+			    History 
+			</div>
+			<div class="list">
+				<ion-list show-delete="shouldShowDelete">
+					<ion-item class="item item-thumbnail-left" ng-click="profile.linker(league._id, profile.selectedTabIndex)" ng-repeat="league in profile.leagues">						
+						<strong>{{league.name}}</strong><br/>
+						Owner: {{league.ownerName}}<br/>
+						Team: {{league.teamWinnerName}}
+						<span class="item-note">
+							Credits Limit: {{league.maxCredits}}
+						</span>
+		      </ion-item>
+				</ion-list>			
+			</div>					
+		</div>	
+	</ion-content>
+</ion-view>

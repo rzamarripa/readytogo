@@ -1,0 +1,149 @@
+<ion-view view-title="Match Details" class="background">
+  <ion-content>
+  	<fieldset>
+	  	<div class="row">
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.homeTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.homeTeam_id)}}</div>
+		  </div>
+		  <div class="col col-10">
+		  	<h2 align="left" style="margin-top:14px;">{{mdetails.match.homeGoals}}</h2>
+		  </div>
+		  <div class="col col-10">
+		  	<h4 align="left" style="margin-top:26px;color:red;">{{mdetails.prediction.homeResult}}</h4>
+		  </div>
+		  <div class="col col-20">
+		  	<div style="margin-top:18px;text-align:center;">
+				<i class="icon icon-rounded {{mdetails.predictionResult()}}"></i>
+		  	</div>
+		  </div>
+		  <div class="col col-10">
+		  	<h4 align="right" style="margin-top:26px;color:red;">{{mdetails.prediction.awayResult}}</h4>
+		  </div>
+		  <div class="col col-10">
+		  	<h2 align="right" style="margin-top:14px;">{{mdetails.match.awayGoals}}</h2>
+		  </div>
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.awayTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.awayTeam_id)}}</div>
+		  </div>
+		</div>
+	</fieldset>
+	<br>
+	Upgrades
+	<fieldset style="background: rgba(0,0,0,0.1);background-color:white:">
+	  	<div class="row">
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.homeTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.homeTeam_id)}}</div>
+		  </div>
+		  <div class="col col-20">
+		      <label>
+			    <input type="radio" value="homeWin" ng-model="mdetails.halfTimeUpgrade.result" ng-checked="mdetails.halfTimeUpgrade.result == 'homeWin'"/>
+			    <img src="images/box.png" style="width:60px;">
+			  </label>
+		  </div>
+		  <div class="col col-20">
+		  	  <label>
+			    <input type="radio" value="tie" ng-model="mdetails.halfTimeUpgrade.result" ng-checked="mdetails.halfTimeUpgrade.result == 'tie'"/>
+			    <img src="images/box.png" style="width:60px;">
+			  </label>
+		  </div>
+		  <div class="col col-20">
+		  	  <label>
+			    <input type="radio" value="awayWin" ng-model="mdetails.halfTimeUpgrade.result" ng-checked="mdetails.halfTimeUpgrade.result == 'awayWin'"/>
+			    <img src="images/box.png" style="width:60px;">
+			  </label>
+		  </div>
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.awayTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.awayTeam_id)}}</div>
+		  	<div class="col"><button ng-click="mdetails.upgrade1Save(mdetails.halfTimeUpgrade)"></button></div>
+		  </div>
+		</div>
+	</fieldset>
+	<br>
+	<fieldset>
+        <div class="row">
+          <div class="col col-30">
+            <img style="margin-left: auto;margin-right: auto;display: block;" ng-src="{{mdetails.teamFlag(mdetails.match.homeTeam_id)}}">
+            <div align="center" style="position: relative;top:-12px;">{{mdetails.teamName(mdetails.match.homeTeam_id)}}</div>
+          </div>
+          <div class="col col-20">
+              <input style="margin-top:10px;border:1px solid; font-size:25px; width:50px; height:50px;" type="number" min="0" ng-model="mdetails.halfScoreUpgrade.homeGoals">
+          </div>
+          <div class="col col-20">
+              <input style="margin-top:10px;text-align:right;border:1px solid; font-size:25px; width:50px; height:50px;" type="number" min="0" ng-model="mdetails.halfScoreUpgrade.awayGoals">
+          </div>
+          <div class="col col-30">
+            <img style="margin-left: auto;margin-right: auto;display: block;" ng-src="{{mdetails.teamFlag(mdetails.match.awayTeam_id)}}">
+            <div align="center" style="position: relative;top:-12px;">{{mdetails.teamName(mdetails.match.awayTeam_id)}}</div>
+            <div class="col"><button ng-click="mdetails.upgrade2Save(mdetails.halfScoreUpgrade)"></button></div>
+          </div>
+        </div>
+	</fieldset>
+	<br>
+	<fieldset>
+        <div class="row">
+          <div class="col">
+          	<p align="center">Time o first goal</p>
+              <input style="margin-top:10px;border:1px solid; font-size:25px; width:200px; height:50px;" type="number" min="0" max="90" ng-model="mdetails.firstGoalUpgrade.time">
+          </div>
+          <div class="col col-30">
+            <div class="col"><button ng-click="mdetails.upgrade3Save(mdetails.firstGoalUpgrade)"></button></div>
+          </div>
+          <div class="row">
+		  	<div style="margin-top:18px;text-align:center;">
+				<i class="icon icon-rounded {{mdetails.upgrade3Result()}}"></i>
+		  	</div>
+		  </div>
+        </div>
+	</fieldset>
+	<br>
+	<fieldset>
+        <div class="row">
+          <div class="col">
+          	<p align="center">Total match goals</p>
+              <input style="margin-top:10px;border:1px solid; font-size:25px; width:200px; height:50px;" type="number" min="0" ng-model="mdetails.matchGoalsUpgrade.goals">
+          </div>
+          <div class="col col-30">
+            <div class="col"><button ng-click="mdetails.upgrade4Save(mdetails.matchGoalsUpgrade)"></button></div>
+          </div>
+          <div class="row">
+		  	<div style="margin-top:18px;text-align:center;">
+				<i class="icon icon-rounded {{mdetails.upgrade4Result()}}"></i>
+		  	</div>
+		  </div>
+        </div>
+	</fieldset>
+	<br>
+	<fieldset>
+	  	<div class="row">
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.homeTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.homeTeam_id)}}</div>
+		  </div>
+		  <div class="col col-20">
+		      <label>
+			    <input type="radio" value="{{mdetails.match.homeTeam_id}}" ng-model="mdetails.penaltiesResultUpgrade.teamWinner_id" ng-checked="mdetails.penaltiesResultUpgrade.teamWinner_id == mdetails.match.homeTeam_id"/>
+			    <img src="images/box.png" style="width:60px;">
+			  </label>
+		  </div>
+		  <div class="col col-20"></div>
+		  <div class="col col-20">
+		  	  <label>
+			    <input type="radio" value="{{mdetails.match.awayTeam_id}}" ng-model="mdetails.penaltiesResultUpgrade.teamWinner_id" ng-checked="mdetails.penaltiesResultUpgrade.teamWinner_id == mdetails.match.awayTeam_id"/>
+			    <img src="images/box.png" style="width:60px;">
+			  </label>
+		  </div>
+		  <div class="col col-20">
+		  	<img align="center" ng-src="{{mdetails.teamFlag(mdetails.match.awayTeam_id)}}">
+		  	<div align="center" style="position: relative;top:-15px;">{{mdetails.teamName(mdetails.match.awayTeam_id)}}</div>
+		  	<div class="col"><button ng-click="mdetails.upgrade5Save(mdetails.penaltiesResultUpgrade)"></button></div>
+		  </div>
+		</div>
+	</fieldset>
+  </ion-content>
+</ion-view>
+
+
