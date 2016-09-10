@@ -1,0 +1,8 @@
+<h2>Grupos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<button ng-repeat="grupo in gm.grupos" ui-sref="root.listaAlumnos({grupo_id : grupo._id, maestro_id : grupo.maestro_id})" class="btn btn-primary btn-lg">{{grupo.grupo}}</button>
+	</div>
+</div>
+
+

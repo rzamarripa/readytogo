@@ -29,6 +29,7 @@ function PadresCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
   {
 			this.action = true;
 		  this.nuevo = !this.nuevo;
+		  this.hijos_id = [];
 		  this.padre = {}; 
   };
  

@@ -4,7 +4,7 @@ angular.module("FLOKsports").run(function ($rootScope, $state) {
     // and redirect the user back to the main page
     switch(error) {
       case "AUTH_REQUIRED":
-        $state.go('anon.login');
+        $state.go('anon.main');
         break;
       case "FORBIDDEN":
         //$state.go('root.home');
@@ -92,6 +92,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
         'tab-dash': {
           templateUrl: 'client/templates/tab-dash.html',
           controller: 'DashCtrl as dash'
+        }
+      }
+    })  
+    .state('tabs.account', {
+      url: '/account',
+      views: {
+        'tab-dash': {
+          templateUrl: 'client/templates/tab-account.html',
+          controller: 'AccountCtrl as ac'
         }
       }
     })     

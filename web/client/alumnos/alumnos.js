@@ -7,7 +7,7 @@ function AlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) 
 
   this.action = true;
 	this.subscribe('alumnos',()=>{
-			return [{}]
+			return [{estatus : true}]
 	});
 
   this.helpers({
