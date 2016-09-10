@@ -4,7 +4,7 @@ angular.module("FLOKsports").run(function ($rootScope, $state) {
     // and redirect the user back to the main page
     switch(error) {
       case "AUTH_REQUIRED":
-        $state.go('anon.main');
+        $state.go('anon.login');
         break;
       case "FORBIDDEN":
         //$state.go('root.home');
@@ -56,11 +56,7 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       templateUrl: 'client/templates/signup.html',
       controller: 'SignupCtrl as sg'
     }) 
-    .state('anon.forgot', {
-      url: '/forgot',
-      templateUrl: 'client/templates/forgot.html',
-      controller: 'ForgotPasswordCtrl as forgot'
-    })
+    
 
     .state('anon.logout', {
       url: '/logout',
@@ -84,102 +80,25 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       url: '/tab',
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
-    })       
-    .state('tabs.profile', {
-      url: '/profile',
+      resolve: {
+            "currentUser": ["$meteor", function($meteor){
+              return $meteor.requireUser();
+            }]
+          }
+    })  
+    .state('tabs.dash', {
+      url: '/dash',
       views: {
-        'tab-profile': {
-					templateUrl: 'client/templates/profile.html',
-					controller: 'ProfileCtrl as profile',      
+        'tab-dash': {
+          templateUrl: 'client/templates/tab-dash.html',
+          controller: 'DashCtrl as dash'
         }
-      }      
-    })
-    .state('tabs.leagues', {
-      url: '/leagues',
-      views: {
-        'tab-leagues': {
-					templateUrl: 'client/templates/leagues.html',
-					controller: 'LeaguesCtrl as leagues',      
-        }
-      }      
-    })
-    .state('tabs.home-howToPlay', {
-      url: '/home/howToPlay',
-      views: {
-        'tab-home': {
-          templateUrl: 'client/templates/howToPlay.html',
-
-              
-        }
-      }      
-    })
-    .state('tabs.news', {
-      url: '/news',
-      views: {
-        'tab-news': {
-					templateUrl: 'client/templates/news.html',
-					controller: 'NewsCtrl as news',      
-        }
-      }      
-    })
-    .state('tabs.modal', {
-      url: '/news',
-      views: {
-        'tab-news': {
-          templateUrl: 'client/templates/ligaActual.html',
-          controller: 'LigaActualCtrl as ligaActual',      
-        }
-      }      
-    })
+      }
+    })     
+    
      /////////////////////////// TAB PROFILE ///////////////////////////////////////
 
-    .state('tabs.profile-chooseSports', {
-      url: '/profile/chooseSports',
-      views:{
-        'tab-profile':{
-          templateUrl: 'client/templates/chooseSports.html',
-          controller: 'ChooseSportsCtrl as chooseSports',      
-        }       
-      }
-    })
-    .state('tabs.profile-ligas', {
-      url: '/profile/ligas/:id',
-      views:{
-        'tab-profile':{
-          templateUrl: 'client/templates/ligas.html',
-          controller: 'LigasCtrl as ligas',      
-        }       
-      }
-    }) 
     
-    .state('tabs.profile-ligaActual', {
-      url: '/profile/ligaActual/:id',
-      views:{
-        'tab-profile':{
-          templateUrl: 'client/templates/ligaActual.html',
-          controller: 'LigaActualCtrl as ligaActual',      
-        }       
-      }
-    })  
-    
-     .state('tabs.profile-myPicks', {
-      url: '/profile/myPicks',
-      views:{
-        'tab-profile':{
-          templateUrl: 'client/templates/myPicks.html',
-          controller: 'MyPicksCtrl',      
-        }       
-      }
-    })
-     .state('tabs.profile-amigo', {
-      url: '/profile/amigo/:id',
-      views:{
-        'tab-profile':{
-          templateUrl: 'client/templates/amigo.html',
-          controller: 'AmigoCtrl as amigo',      
-        }       
-      }
-    })
     /////////////////////////// TAB HOME ///////////////////////////////////////
     .state('tabs.misHijos', {
       url: '/home',

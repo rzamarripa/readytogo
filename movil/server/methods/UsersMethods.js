@@ -4,23 +4,7 @@
   	};
 Meteor.methods({
 
-  	createFloksUser: function(user,device){
-  	check(user.username, String);
-      check(user.password, String);
-      check(user.email, String);
-      check(device, String);
-
-      if(!existFloksUser(user.username))
-      {
-        var tokenid=CryptoJS.MD5(user.username+user.password+ device).toString();
-        var token = {username:user.username,device:device,token:tokenid};
-        user.password = CryptoJS.MD5(user.password).toString()
-  			flocksUsers.insert(user);
-        flocksTokens.insert(token);
-        return {status:apiConstants.SUCCESS,data:{'tokenid':tokenid}};
-  	   }
-      return {status:apiConstants.ERROR,data:{error:apiConstants.USER_EXIST}};
-  	},
+  	
 
     loginFloksUser: function(user,device){
       check(user.username, String);
