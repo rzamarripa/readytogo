@@ -98,12 +98,12 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     .state('tabs.account', {
       url: '/account',
       views: {
-        'tab-dash': {
+        'tab-account': {
           templateUrl: 'client/templates/tab-account.html',
           controller: 'AccountCtrl as ac'
         }
       }
-    })     
+    })  
     
      /////////////////////////// TAB PROFILE ///////////////////////////////////////
 

@@ -8,6 +8,9 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 	
 	window.rc = rc;
 	
+	this.hoy = new Date();
+	console.log(this.hoy);
+	
 	var start = new Date();
 	start.setHours(0,0,0,0);
 
@@ -82,7 +85,7 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 		console.log("cancelar")
 		var mov = Movimientos.findOne({alumno_id:alumno._id});
 		if(mov){
-			Movimientos.update({_id:mov._id}, {$set : {estatus : 4,fechaCancelacion:new Date()}});
+			Movimientos.update({_id:mov._id}, {$set : {estatus : "4",fechaCancelacion:new Date()}});
 		}
 		$ionicListDelegate.closeOptionButtons();
 	}
@@ -94,12 +97,11 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 			var grupo =Grupos.findOne({alumnos :{"$elemMatch":{_id:alumno._id}}});
 			var movimiento = {
 				alumno_id:alumno._id,
-				estatus:1,
+				estatus:"1",
 				fechaDevuelto:null,
 				fechaEnvio:null,
 				fechaSolicitud:new Date(),
 				grupo_id:grupo._id,
-				estatus:1,
 				maestro_id:grupo.maestro_id
 			}
 			Movimientos.insert(movimiento);
