@@ -6,7 +6,7 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 	let rc = $reactive(this).attach($scope);
 
   this.action = true;
-  this.alumnos_id = [];
+  this.alumnos = [];
   this.al = {};
   
 	this.subscribe('alumnos',()=>{
@@ -17,13 +17,17 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 		return [{"profile.estatus": true, roles: ["Maestro"]}]
 	});
 	
+	this.subscribe('alumnos',()=>{
+		return [{estatus : true}]
+	});
+	
 	this.subscribe('grupos',()=>{
 			return [{estatus: true}]
 	});
 	
 
   this.helpers({
-	  alumnos : () => {
+	  alumnosTotales : () => {
 		  return Alumnos.find();
 	  },
 	  usuarios: ()=> {
@@ -39,7 +43,7 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
   {
 			this.action = true;
 		  this.nuevo = !this.nuevo;
-		  this.grupo = {}; 
+		  this.grupo = {};
   };
  
 	this.guardar = function(grupo,form)
@@ -50,7 +54,7 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 		  }
 						
 			grupo.estatus = true;
-			grupo.alumnos_id = angular.copy(this.alumnos_id);
+			grupo.alumnos = angular.copy(this.alumnos);
 			Grupos.insert(grupo);
 			toastr.success('Guardado correctamente.');
 			this.grupo = {};
@@ -67,7 +71,7 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 			//console.log(id);
 	    this.grupo = Grupos.findOne({_id:id});
 	    //console.log(this.grupo);
-	    this.alumnos_id = angular.copy(this.grupo.alumnos_id);
+	    this.alumnos = angular.copy(this.grupo.alumnos);
 			this.action = false;
 			$('.collapse').collapse('show');
 			this.nuevo = false;
@@ -82,8 +86,8 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 
 			var idTemp = grupo._id;
 			delete grupo._id;
-			grupo.alumnos_id = angular.copy(this.alumnos_id);
-			Folios.update({_id:idTemp},{$set:grupo});
+			grupo.alumnos = angular.copy(this.alumnos);
+			Grupos.update({_id:idTemp},{$set:grupo});
 			toastr.success('Actualizado correctamente.');
 			$('.collapse').collapse('hide');
 			this.nuevo = true;
@@ -102,23 +106,15 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 			Grupos.update({_id:id}, {$set : {estatus : grupo.estatus}});
 	};
 	
-	this.getAlumno = function(id){
-		  var alumno = Alumnos.findOne({_id:id});
-			if (alumno)
-				 return alumno.nombre + ' ' + alumno.apPaterno + ' ' + alumno.apMaterno;
-	};
-	
 	this.getMaestro= function(id){
 		  var maestro = Meteor.users.findOne({_id:id});
 			if (maestro)
 				 return maestro.profile.nombre + ' ' + maestro.profile.apPaterno + ' ' + maestro.profile.apMaterno;
 	};
 	
-	this.AgregarAlumno = function(grupo){		
-			console.log(grupo);
-			this.al.alumno_id = grupo.alumno_id;
-			this.al.estatus = false;
-			this.alumnos_id.push(this.al);
+	this.AgregarAlumno = function(alumno){
+			console.log(JSON.parse(alumno));
+			this.alumnos.push(JSON.parse(alumno));
 			this.al = {};
 	};
 	

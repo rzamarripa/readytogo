@@ -4,23 +4,30 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th width="30%"><div class="text-center">Alumno</div></th>
-					<th width="10%"><div class="text-center">Estado</div></th>
+					<td class="col-sm-1">No.</td>
+					<th ><div class="text-center">Alumno</div></th>
+					<th class="col-sm-2"><div class="text-center">Detalle</div></th>
+					<th class="col-sm-2"><div class="text-center">Estado</div></th>
+					<th class="col-sm-2"><div class="text-center">Acción</div></th>
 				</tr>
 			</thead>
 			<tbody>
-		    <tr ng-repeat="alumno in la.alumnos">
-		    	<td>{{la.getAlumno(alumno._id)}} </td>
-			    <td>
-				    <div class="text-center">
-				    	<!--<span ng-if="alumno.estatus" class="label label-success">
-							  Recogiendo
-							</span>
-							-->
-							<a href="#" ng-click="la.cambiarEstatus(alumno._id)">
-							    				<i class="fa fa-check"></i> Enviando
-							</a>
-				    </div>
+		    <tr ng-repeat="movimiento in la.movimientos | orderBy:'estatus'">
+			    <td>{{$index + 1}}</td>
+		    	<td>{{la.getAlumno(movimiento.alumno_id)}} </td>
+			    <td class="text-center">
+				    <span class="label label-warning" ng-if="movimiento.estatus == '1'">Solicitado</span>
+				    <span class="label label-success" ng-if="movimiento.estatus == '3'">Enviado</span>
+				    <span class="label label-danger" ng-if="movimiento.estatus == '2'">Devuelto</span>
+			    </td>
+			    <td class="text-center">
+				    	<span class="label label-warning" ng-if="movimiento.estatus == '1' || movimiento.estatus == '3' || movimiento.estatus == '2'">Solicitado {{movimiento.fechaSolicitud | date : "HH:mm:ss"}}</span><br/>
+				    	<span class="label label-success" ng-if="movimiento.estatus == '3' || movimiento.estatus == '2'">Enviado&nbsp;&nbsp;&nbsp; {{movimiento.fechaEnvio | date : "HH:mm:ss"}}</span>
+				    	<span class="label label-danger" ng-if="movimiento.estatus == '2'">Devuelto&nbsp;&nbsp;&nbsp; {{movimiento.fechaDevuelto | date : "HH:mm:ss"}}</span>
+			    </td>
+			    <td class="text-center">
+				    <button ng-click="la.cambiarEstatus(movimiento._id, '3')" class="btn btn-success" ng-if="movimiento.estatus == '1' || movimiento.estatus == '2'">Enviar</button>
+				    <button ng-click="la.cambiarEstatus(movimiento._id, '2')" class="btn btn-danger" ng-if="movimiento.estatus == '3'">Devolver</button>
 			    </td>
 		    </tr>
 			</tbody>

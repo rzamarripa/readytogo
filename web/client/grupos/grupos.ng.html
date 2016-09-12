@@ -27,14 +27,14 @@
 					<div class="well">	    
 				    <div class="row"> 
 					    <div class="col-sm-4">
-								<select class="form-control select2"  placeholder="Seleccione" ng-model="gpo.grupo.alumno_id">
-									<option  value="{{alumno._id}}" ng-repeat="alumno in gpo.alumnos">
+								<select class="form-control select2"  placeholder="Seleccione" ng-model="gpo.alumno">
+									<option  value="{{alumno}}" ng-repeat="alumno in gpo.alumnosTotales">
 										{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}
 									</option>
 								</select>				
 							</div>
 							<div class="col-sm-4">
-									 <input type="submit" ng-click="gpo.AgregarAlumno(gpo.grupo)" value="Agregar" class="btn btn-primary" />
+									 <input type="submit" ng-click="gpo.AgregarAlumno(gpo.alumno)" value="Agregar" class="btn btn-primary" />
 							</div>
 				    </div>
 				    <br />
@@ -47,8 +47,8 @@
 							 		 				</tr>
 							 		 			</thead>
 							 		 			<tbody>
-							 		 				<tr ng-repeat="a in gpo.alumnos_id">
-							 		 						<td>{{gpo.getAlumno(a.alumno_id)}}</td>			
+							 		 				<tr ng-repeat="a in gpo.alumnos">
+							 		 						<td>{{a.nombre}} {{a.apPaterno}} {{a.apMaterno}}</td>			
 							 		 				</tr>
 							 		 			</tbody>
 						   		 </table>

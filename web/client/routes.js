@@ -111,6 +111,16 @@ angular.module('verificaciones').config(['$injector', function ($injector) {
 	      }]
 	    }
     }) 
+    .state('root.gruposMaestro', {
+      url: '/gruposMaestro',
+      templateUrl: 'client/grupos/gruposMaestro.html',
+      controller: 'GruposMaestroCtrl as gm',
+      resolve: {
+	      "currentUser": ["$meteor", function($meteor){
+	        return $meteor.requireUser();
+	      }]
+	    }
+    }) 
     .state('root.maestros', {
       url: '/maestros',
       templateUrl: 'client/maestros/maestros.ng.html',
@@ -142,7 +152,7 @@ angular.module('verificaciones').config(['$injector', function ($injector) {
 	    }
     })
     .state('root.listaAlumnos', {
-      url: '/listaAlumnos',
+      url: '/listaAlumnos/:grupo_id/:maestro_id',
       templateUrl: 'client/listaAlumnos/listaAlumnos.ng.html',
       controller: 'listaAlumnosCtrl as la',
       resolve: {

@@ -7,35 +7,29 @@ function listaAlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toa
 
   this.action = true;
   this.alumnos_id = [];
-  this.grupo = "";
+  this.grupo = {};
+  this.fechaInicio = new Date();
+	this.fechaInicio.setHours(0,0,0,0);
+	this.fechaFin = new Date();
+	this.fechaFin.setHours(23,0,0,0);
+  
   
 	this.subscribe('grupos',()=>{
-			return [{estatus: true, maestro_id: Meteor.user() != undefined ? Meteor.user()._id : "" }]
+			return [{estatus: true, _id: $stateParams.grupo_id }]
 	});
-  
-	this.subscribe('usuarios',()=>{
-		return [{"profile.estatus": true, _id: Meteor.user() != undefined ? Meteor.user()._id : ""}]
-	});
-  
-	this.subscribe('alumnos',()=>{
-			return [{estatus: false,grupo: this.getReactively('this.grupo')}]
-	});
-	
-	
+    
+  this.subscribe('movimientos', () => {
+	  console.log(this.fechaInicio, this.fechaFin);
+	  return [{ fechaSolicitud : { $gte : this.fechaInicio, $lt : this.fechaFin}, grupo_id : $stateParams.grupo_id}]
+  });
+  	
   this.helpers({
-  	grupos : () => {
+  	grupo : () => {
 		  return Grupos.findOne();
 	  },
-	  usuarios: ()=> {
-		  return Meteor.users.findOne({_id : Meteor.user()});
-	  },
-	  alumnos : () => {    
-	  		var grupos = Grupos.find().fetch();
-	  		if (grupos[0] !== undefined)
-						this.grupo = grupos[0].grupo.toString();
-				
-				return Alumnos.find({});
-	  },
+	  movimientos : () => {
+		  return Movimientos.find();
+	  }
   });
   
   this.nuevo = true;  
@@ -46,18 +40,25 @@ function listaAlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toa
 		  this.grupo = {}; 
   };
 		
-	this.cambiarEstatus = function(id)
+	this.cambiarEstatus = function(movimiento_id, estatus)
 	{	
-			var alumno = Alumnos.findOne({_id:id});
-			alumno.estatus = true;
-			
-			Alumnos.update({_id:id}, {$set : {estatus : alumno.estatus}});
+		if(estatus == 3){
+			console.log("entregado");
+			Movimientos.update({_id:movimiento_id}, {$set : {estatus : estatus, fechaEnvio : new Date()}});
+		}else if(estatus == 2){
+			console.log("devuelto");
+			Movimientos.update({_id:movimiento_id}, {$set : {estatus : estatus, fechaDevuelto : new Date()}});
+		}
 	};
 	
-	this.getAlumno = function(id){
-		  var alumno = Alumnos.findOne({_id:id});
-			if (alumno)
-				 return alumno.nombre + ' ' + alumno.apPaterno + ' ' + alumno.apMaterno;
+	this.getAlumno = function(alumno_id){
+		var alumnoSeleccionado = "";
+	  _.each(rc.grupo.alumnos, function(alumno){
+		  if (alumno_id == alumno._id){
+			  alumnoSeleccionado = alumno.nombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
+		  }
+	  });
+		return alumnoSeleccionado;
 	};
 		
 };
