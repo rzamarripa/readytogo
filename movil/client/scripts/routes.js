@@ -86,12 +86,12 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
             }]
           }
     })  
-    .state('tabs.dash', {
-      url: '/dash',
+    .state('tabs.solicitar', {
+      url: '/solicitar',
       views: {
-        'tab-dash': {
-          templateUrl: 'client/templates/tab-dash.html',
-          controller: 'DashCtrl as dash'
+        'tab-solicitar': {
+          templateUrl: 'client/templates/tab-solicitar.html',
+          controller: 'SolicitarCtrl as solicitar'
         }
       }
     })     

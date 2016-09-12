@@ -3,22 +3,27 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive tabs-item-hide">
+<ion-tabs class="tabs-stable tabs-icon-top tabs-color-positive" ng-cloak>
+
 
   <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
+  <ion-tab title="Solicitar" icon-off="ion-ios-flag-outline" icon-on="ion-ios-flag" href="#/tab/solicitar">
+    
+    <ion-nav-view name="tab-solicitar">
+    	<ion-nav-bar class="navColor">
+			  <ion-nav-back-button class="button-clear"  style="color: white;">
+			  	<i class="ion-arrow-left-c"></i> Back
+			  </ion-nav-back-button>
+			</ion-nav-bar>
+		</ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
+  <ion-tab title="Perfil" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/perfil">
+    <ion-nav-view name="tab-perfil"></ion-nav-view>
   </ion-tab>
 
-  <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
+
 
 
 </ion-tabs>

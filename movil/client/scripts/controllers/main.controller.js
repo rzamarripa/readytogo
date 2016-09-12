@@ -4,7 +4,7 @@ angular
   $reactive(this).attach($scope);
   
  
-	$state.go("tabs.dash")
+	$state.go("tabs.solicitar")
   
   
 });

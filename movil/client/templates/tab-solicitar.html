@@ -1,0 +1,16 @@
+<ion-view view-title="Solicitar" >		
+  <ion-content >
+		<ion-list>
+			<ion-item class="item item-avatar"  ng-repeat="alumno in solicitar.alumnos" ng-click="solicitar.solicitar(alumno)">
+				<img ng-src="{{alumno.fotografia}}">
+				<h2>{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}</h2>
+				<p>{{solicitar.estado(alumno)}}</p>
+				<ion-option-button class="button-info"
+                       ng-click="solicitar.cancelar(alumno)"
+                       ng-if="solicitar.solicitado(alumno)">
+			      Cancelar
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
