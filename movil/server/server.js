@@ -11,6 +11,10 @@ Meteor.publish("alumnos", function(options){
 });
 
 Meteor.publish("movimientos",function(params){
-	console.log(params);
+	
   	return Movimientos.find(params);
+});
+Meteor.publish("grupos",function(params){
+	
+  	return Grupos.find(params);
 });
