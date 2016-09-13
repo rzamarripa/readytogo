@@ -51,11 +51,31 @@
 			    		<label>Correo</label>
 				    	<input type="text" class="form-control" placeholder="Correo" ng-model="pad.padre.profile.correo">
 			    	</div>
+			    	<div class="col-sm-3" valida>
+							<label for="tipo">Sexo *</label>
+					    <select name="tipo" ng-model="pad.padre.profile.sexo" class="form-control" required="">
+							  <option value="Masculino">Masculino</option>
+							  <option value="Femenino">Femenino</option>
+							</select>
+						</div>
 			    	<div class="col-sm-4">
 							<label for="talla">Fotografía</label>
 							<button class="btn btn-primary" ng-click="pad.tomarFoto()"><i class="fa fa-camera"></i></button>
 							<img width="100px" ng-src="{{pad.padre.profile.fotografia}}" ng-class="{'img-thumbnail': !!pad.padre.profile.fotografia}" />
 						</div>
+			    </div>
+				</div>
+				<h4>Datos del Carro</h4>
+				<div class="well">	    
+			    <div class="row"> 
+			    	<div class="col-sm-4" valida>
+			    		<label>Modelo *</label>
+				    	<input name="nombre" type="text" class="form-control" placeholder="Modelo del Carro" ng-model="pad.padre.profile.modeloCarro" required="">
+			    	</div>
+			    	<div class="col-sm-4" valida>
+			    		<label>Descripción *</label>
+				    	<input name="color" type="text" class="form-control" placeholder="Color del Carro" ng-model="pad.padre.profile.descripcionCarro" required="">
+			    	</div>
 			    </div>
 				</div>
 				<h4>Datos de los Hijos</h4>

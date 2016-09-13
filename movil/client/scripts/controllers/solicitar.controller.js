@@ -45,6 +45,7 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 			return 'Sin Solicitar';
 		switch(mov.estatus){
 			case "1":
+				return "Solicitado";
 			case "2":
 				return "Solicitado";
 			case "3":
@@ -64,6 +65,7 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 			return 'dark';
 		switch(mov.estatus){
 			case "1":
+				return "energized";
 			case "2":
 				return "energized";
 			case "3":
@@ -108,7 +110,7 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 		}
 		else if(mov.estatus==4){
 			
-			Movimientos.update({_id:mov._id}, {$set : {estatus : 1,fechaSolicitud:new Date()}});
+			Movimientos.update({_id:mov._id}, {$set : {estatus : "1",fechaSolicitud:new Date()}});
 		}
 		
 	}

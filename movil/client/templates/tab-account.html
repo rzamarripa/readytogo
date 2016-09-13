@@ -1,5 +1,37 @@
-<ion-view view-title="Account">
-  <ion-content>
-    hola
-  </ion-content>
+<ion-view view-title="Account" >	
+	<ion-content has-header="true" has-tabs="true">
+			<div class="row">
+				<div class="col">
+					<div class="row trans-30 margin-15">
+						<div class="col col-25 col-center profile margin-top-20">
+					    <img ng-src="{{ac.tieneFoto(ac.miPerfil.profile.sexo, ac.miPerfil.profile.fotografia)}}" width="90%">		    
+					  </div>					  
+					  <div class="col col-75 profile">
+					  	<h4 class="text-white">{{ac.miPerfil.profile.nombre}} {{ac.miPerfil.profile.apPaterno}}</h4>
+					    <h6 class="text-white"><strong>{{ac.miPerfil.profile.modeloCarro}} - {{ac.miPerfil.profile.descripcionCarro}}</strong></h6>
+					    <h6 class="text-white">Hijos: <strong> {{ac.miPerfil.profile.hijos_id.length || 0 | number:0}}</strong></h6>
+					  </div>
+					</div>		  
+				</div>
+			</div>	
+			<div class="card" ng-show="ac.miPerfil.profile.hijos_id.length > 0">
+				<div class="item item-divider">
+				    Hijos: 
+				</div>
+				<div class="list">
+					<span class="item item-thumbnail-left" href="#" ng-repeat="alumno in ac.alumnos">
+			      <img ng-src="{{ac.tieneFoto(alumno.sexo, alumno.fotografia)}}">		    
+			      <h2>{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}</h2>
+			    </span>		
+				</div>					
+			</div>
+			<div class="row">
+				<div class="col">
+					<button class="button button-full button-assertive"
+			  				ng-click="ac.logout()">
+				  Cerrar Sesión
+				</button>
+				</div>
+			</div>
+	</ion-content>
 </ion-view>
