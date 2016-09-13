@@ -37,7 +37,7 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     .state('anon', {
       url: '',
       abstract: true,
-      template: '<ui-view/>'
+      template: '<ui-view style="opacity:1"></ui-view>'
     })
     .state('anon.login', {
       url: '/login',

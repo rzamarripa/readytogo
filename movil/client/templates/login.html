@@ -3,7 +3,7 @@
     <div class="text-center instructions">
 			<img src="images/logoIngles.png" alt="logo" width="385" height="175" />
     </div>   
-    <div class="list">
+    	<div class="list">
 		  <label class="item item-input">
 		    <span class="input-label">Usuario</span>
 		    <input type="text" name="usuario" ng-model="lc.credentials.username">
@@ -13,11 +13,7 @@
 		    <input type="password" ng-model="lc.credentials.password">
 		  </label>
 		</div>
-		<!--
-		<div class="col">
-			<a ui-sref="anon.forgot" class="button button-light button-clear button-block">Forgot your password? {{currentUser}}</a> 
-		</div>
-		-->
+		
 		<div class="col">
 		<a ng-click="lc.login()" class="button button-positive button-block">Login</a> </div>
 		
