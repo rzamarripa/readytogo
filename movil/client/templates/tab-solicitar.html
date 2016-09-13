@@ -1,21 +1,39 @@
-<ion-view view-title="Solicitar" >		
-  <ion-content >
-		<ion-list>
-			<ion-item class="item item-avatar"  ng-repeat="alumno in solicitar.alumnos">
-				<img ng-src="{{alumno.fotografia}}">
-				<h2>{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}</h2>
-				<p>{{solicitar.estado(alumno)}}</p>
-				<ion-option-button class="button-assertive"
-                       ng-click="solicitar.cancelar(alumno)"
-                       ng-if="solicitar.solicitado(alumno)">
-			      Cancelar
-				</ion-option-button>
-				<ion-option-button class="button-positive"
-                       ng-click="solicitar.solicitar(alumno)"
-                       ng-if="!solicitar.solicitado(alumno)">
-			      Solicitar
-				</ion-option-button>
-			</ion-item>
-		</ion-list>
+<ion-view view-title="Solicitar {{solicitar.hoy | date : 'dd-MMMM-yyyy'}}">
+  <ion-content>
+  	<div class="list card" ng-repeat="alumno in solicitar.alumnos">		
+		  <div class="item item-avatar">
+		    <img ng-src="{{solicitar.tieneFoto(alumno.sexo, alumno.fotografia)}}" alt="{{alumno.profile.nombreCompleto}}">
+		    <h2>{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}</h2>
+		    <span class="{{solicitar.color(alumno)}}">{{solicitar.estado(alumno)}}</span>
+		  </div>
+			
+			{{alumno.seguimiento.texto}}
+		  <div class="item item-image" ng-if="alumno.sexo == 'Masculino'">
+			  <button class="button button-full button-calm"
+			  				ng-click="solicitar.solicitar(alumno)"
+                ng-if="!solicitar.solicitado(alumno)">
+				  Solicitar
+				</button>
+				
+		  </div>
+		  
+		  <div class="item item-image" ng-if="alumno.sexo == 'Femenino'">
+			  <button class="button button-full button-royal"
+			  				ng-click="solicitar.solicitar(alumno)"
+                ng-if="!solicitar.solicitado(alumno)">
+				  Solicitar
+				</button>
+		  </div>
+		
+		  <a class="item item-icon-left assertive" href="#" ng-click="solicitar.cancelar(alumno)" ng-if="solicitar.solicitado(alumno)">
+		    <i class="icon ion-close-circled"></i>
+		    Cancelar
+		  </a>
+		
+		</div>
+		<div class="item item-image" ng-if="alumno.sexo == 'Masculino'">
+			  <a ui-sref="anon.logout" class="button button-asservie">Cerrar Sesión</a>
+				
+		  </div>
 	</ion-content>
 </ion-view>
