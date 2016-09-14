@@ -3,11 +3,11 @@ angular
   .module('FLOKsports')
   .controller('AccountCtrl', AccountCtrl);
  
-function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log, $ionicModal, $ionicHistory) {
+function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log, $ionicModal, $ionicHistory,$ionicSideMenuDelegate) {
   $reactive(this).attach($scope);
    
   this.subscribe('alumnos',()=>{
-		return [{_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}}]
+		return [{_id :{$in:Meteor.user() && Meteor.user().profile ? (Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]):[]}}]
 	});
 	
 	this.subscribe('grupos',()=>{
@@ -24,15 +24,18 @@ function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log
  	});
  	
  	this.logout = function () {
-    Meteor.logout(function(err){
-        if (err) {
-            throw new Meteor.Error("Logout failed");
-        }else{
-          $ionicHistory.clearHistory();
-          $state.go('anon.login');
-        }
-    })
-  }
+	    Meteor.logout(function(err){
+	        if (err) {
+	            throw new Meteor.Error("Logout failed");
+	        }else{
+	          	$ionicHistory.clearCache();
+	        	$ionicHistory.clearHistory();
+	        	$ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+	        	
+	          	$state.go('anon.login');
+	        }
+	    })
+	  }
  	
  	this.tieneFoto = function(sexo, foto){
 	  if(foto === undefined){

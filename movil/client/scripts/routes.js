@@ -80,6 +80,8 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       url: '/tab',
       abstract: true,
       templateUrl: 'client/templates/tabs.html',
+      controller: 'MainCtrl',
+      controllerAs: 'tabmenu',
       resolve: {
             "currentUser": ["$meteor", function($meteor){
               return $meteor.requireUser();
@@ -89,7 +91,7 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     .state('tabs.solicitar', {
       url: '/solicitar',
       views: {
-        'tab-solicitar': {
+        'side-menu-panel': {
           templateUrl: 'client/templates/tab-solicitar.html',
           controller: 'SolicitarCtrl as solicitar'
         }
@@ -98,13 +100,21 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     .state('tabs.account', {
       url: '/account',
       views: {
-        'tab-account': {
+        'side-menu-panel': {
           templateUrl: 'client/templates/tab-account.html',
           controller: 'AccountCtrl as ac'
         }
       }
     })  
-    
+    .state('tabs.historial', {
+      url: '/historial',
+      views: {
+        'side-menu-panel': {
+          templateUrl: 'client/templates/tab-historial.html',
+          controller: 'HistorialCtrl as hst'
+        }
+      }
+    })
      /////////////////////////// TAB PROFILE ///////////////////////////////////////
 
     
@@ -112,7 +122,7 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     .state('tabs.misHijos', {
       url: '/home',
       views: {
-        'tab-home': {
+        'side-menu-panel': {
           templateUrl: 'client/templates/home.html',
           controller: 'HomeCtrl as home',      
         }
@@ -120,5 +130,5 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     })
     
     
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/tab/solicitar');
 }]);

@@ -1,5 +1,5 @@
-<ion-view view-title="Solicitar {{solicitar.hoy | date : 'dd-MMMM-yyyy'}}">
-  <ion-content>
+<ion-view view-title="Solicitar {{solicitar.hoy | date : 'dd/MM/yyyy'}}" id="page1">
+  <ion-content padding="true" class="has-header">
   	<div class="list card" ng-repeat="alumno in solicitar.alumnos">		
 		  <div class="item item-avatar">
 		    <img ng-src="{{solicitar.tieneFoto(alumno.sexo, alumno.fotografia)}}" alt="{{alumno.profile.nombreCompleto}}">

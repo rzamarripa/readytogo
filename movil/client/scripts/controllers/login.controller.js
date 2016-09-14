@@ -13,6 +13,7 @@ angular
 
       $meteor.loginWithPassword(this.credentials.username,this.credentials.password).then(
         function () {
+
             $state.go('tabs.solicitar');        
         },
         function (error) {

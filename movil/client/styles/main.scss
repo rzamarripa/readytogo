@@ -1,309 +1,101 @@
-.radar {
-  margin-top: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100px;
-  height: 100px;
-  /** height is required as absolute value **/
-  background-color: #F08080;
-  border-radius: 100px;
-  position: relative;
-  animation: pulse 2000ms linear infinite;
-  -webkit-animation: pulse 2000ms linear infinite;
-  -moz-animation: pulse 2000ms linear infinite;
-  img {
-    position: absolute;
-    color: white;
-    text-shadow: -1px -1px #333;
-    border-radius: 50%;
-  }
-  &:after, &:before {
-    display: inline-block;
-    margin: auto;
-    position: absolute;
-    content: "";
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    background-color: #CD5C5C;
-  }
-  &:after {
-    z-index: -100;
-    -webkit-animation: outer-ripple 2000ms linear infinite;
-    -moz-animation: outer-ripple 2000ms linear infinite;
-    animation: outer-ripple 2000ms linear infinite;
-  }
-  &:before {
-    z-index: -200;
-    -webkit-animation: inner-ripple 2000ms linear infinite;
-    -moz-animation: inner-ripple 2000ms linear infinite;
-    animation: inner-ripple 2000ms linear infinite;
-  }
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// Gray & colors from the slate variables 
+$gray-base:              #000 !default;
+$gray-darker:            #272B30 !default; // #222
+$gray-dark:              #3A3F44 !default;   // #333
+$gray:                   #52575C !default; // #555
+$gray-light:             #7A8288 !default;   // #999
+$gray-lighter:           #999 !default; // #eee
+
+
+$brand-primary:         $gray-light !default;
+$brand-success:         #62c462 !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f89406 !default;
+$brand-danger:          #ee5f5b !default;
+$btn-default-color:     #fff !default;
+
+$light: #C8C8C8 !default;
+$stable: $gray-dark;
+$primary: $gray-light;
+$calm: $brand-info;
+$balanced: $brand-success;
+$energized: $brand-warning;
+$assertive: $brand-danger; 
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+
+$base-background-color: $gray-darker !default;
+$base-color:  #C8C8C8 !default;
+
+$button-light-text: #fff;
+$button-light-border: rgba(0,0,0,0.6) !default;
+$button-light-active-bg:darken($light, 10%) !default;
+$button-light-active-border: rgba(0,0,0,0.6) !default;
+
+$button-stable-text:          $btn-default-color !default;
+$button-stable-border:        rgba(0,0,0,0.6) !default;
+$button-stable-active-bg:     $brand-primary !default;
+$button-stable-active-border: rgba(0,0,0,0.6) !default;
+
+$button-positive-border:         rgba(0,0,0,0.6) !default;
+$button-calm-border:        rgba(0,0,0,0.6) !default;
+$button-balanced-border:        rgba(0,0,0,0.6) !default;
+$button-energized-border:        rgba(0,0,0,0.6) !default;
+$button-assertive-border:        rgba(0,0,0,0.6) !default;
+
+
+// toggles 
+$toggle-off-bg-color:            $gray-light;
+$toggle-off-border-color:        rgba(0,0,0,0) !default;
+
+// Item overirdes
+$item-default-bg:                 lighten($gray-darker, 5%) !default;
+$item-default-border:             rgba(0, 0, 0, 0.6) !default;
+$item-default-text:               $base-color !default;
+$item-default-active-bg:          lighten($gray-darker, 10%) !default;
+$item-default-active-border:      rgba(0, 0, 0, 0.6) !default;
+
+.item[disabled] {
+  color: $gray-light;
 }
 
-/* outer ripple */
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  10% {
-    transform: scale(1.1);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
-
-  20% {
-    transform: scale(0.9);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-}
+$item-divider-bg:                darken($gray-darker, 5%) !default;
+$item-divider-color:             $base-color;
 
 
-@-moz-keyframes pulse {
-  0% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
 
-  10% {
-    transform: scale(1.1);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
+// inputs
+// $input-bg:                        $gray-light;
+$input-bg-disabled:               $gray-lighter;
+$input-color:                     $light;
+$input-color-placeholder:         $gray-lighter;
+//$input-label-color:               $dark !default;
 
-  20% {
-    transform: scale(0.9);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-}
-
-
-@-webkit-keyframes pulse {
-  0% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  10% {
-    transform: scale(1.1);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
-
-  20% {
-    transform: scale(0.9);
-    filter: alpha(opacity = 1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(0.8);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-}
-
-
-@keyframes outer-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  80% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-@-webkit-keyframes outer-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  80% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-@-moz-keyframes outer-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  80% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(3.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-/* inner ripple */
-
-@keyframes inner-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  30% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(2.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-@-webkit-keyframes inner-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  30% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(2.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-@-moz-keyframes inner-ripple {
-  0% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  30% {
-    transform: scale(1);
-    filter: alpha(opacity = 50);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(2.5);
-    filter: alpha(opacity = 0);
-    opacity: 0;
-  }
-}
-
-
-/*buttons*/
-
-.tinder-buttons {
-  width: 200px;
-  margin-top: 100px;
-  margin-bottom: 120px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.tinder-button {
-  width: 70px;
-  height: 70px;
-  border-radius: 70px;
-  background: #FFF;
-  border: 5px solid #f0f0f0;
-  float: left;
-  box-shadow: 1px 1px 1px 0px #e9e9e9;
-  &:nth-child(1) {
-    margin-left: 4px;
-    background: url(/img/delete.png);
-    background-size: 25px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  &:nth-child(3) {
-    margin-left: -4px;
-    background: url(/img/heart.png);
-    background-size: 25px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
-.info {
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  background: #FFF;
-  border: 5px solid #f0f0f0;
-  float: left;
-  box-shadow: 1px 1px 1px 0px #e9e9e9;
-  margin-top: 14px;
-  margin-left: -4px;
-  background: url(/img/info.png);
-  background-size: 15px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-p {
-  padding: 0;
-  margin: 0;
-  float: left;
+.item-input textarea {
+    background: transparent;
 }
