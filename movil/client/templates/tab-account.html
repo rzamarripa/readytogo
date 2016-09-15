@@ -8,7 +8,7 @@
 					  </div>					  
 					  <div class="col col-75 profile">
 					  	<h4 class="text-white">{{ac.miPerfil.profile.nombre}} {{ac.miPerfil.profile.apPaterno}}</h4>
-					    <h6 class="text-white"><strong>{{ac.miPerfil.profile.modeloCarro}} - {{ac.miPerfil.profile.descripcionCarro}}</strong></h6>
+					    <h6 class="text-white"><strong> {{ac.miPerfil.profile.modeloCarro}} - {{ac.miPerfil.profile.descripcionCarro}}</strong></h6>
 					    <h6 class="text-white">Hijos: <strong> {{ac.miPerfil.profile.hijos_id.length || 0 | number:0}}</strong></h6>
 					  </div>
 					</div>		  
@@ -22,6 +22,7 @@
 					<span class="item item-thumbnail-left" href="#" ng-repeat="alumno in ac.alumnos">
 			      <img ng-src="{{ac.tieneFoto(alumno.sexo, alumno.fotografia)}}">		    
 			      <h2>{{alumno.nombre}} {{alumno.apPaterno}} {{alumno.apMaterno}}</h2>
+			      <p>No. de solicitudes: {{ac.getMovimientos(alumno._id)}}</p>
 			    </span>		
 				</div>					
 			</div>

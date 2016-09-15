@@ -13,6 +13,12 @@ function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log
 	this.subscribe('grupos',()=>{
 			return [{estatus:true}]
 	});
+	
+	this.subscribe('movimientos',()=>{
+			return [{
+						alumno_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}
+					}];
+	});
 
 	this.helpers({
 		miPerfil : () => {
@@ -20,8 +26,18 @@ function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log
 		},
 		alumnos : () => {
 			return Alumnos.find();
+		},
+		movimientos : () => {
+			return Movimientos.find();
 		}
  	});
+ 	
+ 	this.getMovimientos = function(alumno_id){
+	 	var movAlumno = Movimientos.find({alumno_id : alumno_id}).count()
+	 	if(movAlumno){
+	 		return movAlumno
+	 	}
+ 	}
  	
  	this.logout = function () {
     Meteor.logout(function(err){
@@ -45,4 +61,7 @@ function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log
 		  return foto;
 	  }
   }
+  
+  
+  
 }
