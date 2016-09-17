@@ -19,11 +19,13 @@
 				    <span class="label label-warning" ng-if="movimiento.estatus == '1'">Solicitado</span>
 				    <span class="label label-success" ng-if="movimiento.estatus == '3'">Enviado</span>
 				    <span class="label label-danger" ng-if="movimiento.estatus == '2'">Devuelto</span>
+				    <span class="label label-danger" ng-if="movimiento.estatus == '4'">Cancelado</span>
 			    </td>
 			    <td class="text-center">
-				    	<span class="label label-warning" ng-if="movimiento.estatus == '1' || movimiento.estatus == '3' || movimiento.estatus == '2'">Solicitado {{movimiento.fechaSolicitud | date : "HH:mm:ss"}}</span><br/>
+				    	<span class="label label-warning" ng-if="movimiento.estatus == '1' || movimiento.estatus == '3' || movimiento.estatus == '2'">Solicitado {{movimiento.fechaSolicitud | date : "HH:mm:ss"}}</span>
 				    	<span class="label label-success" ng-if="movimiento.estatus == '3' || movimiento.estatus == '2'">Enviado&nbsp;&nbsp;&nbsp; {{movimiento.fechaEnvio | date : "HH:mm:ss"}}</span>
 				    	<span class="label label-danger" ng-if="movimiento.estatus == '2'">Devuelto&nbsp;&nbsp;&nbsp; {{movimiento.fechaDevuelto | date : "HH:mm:ss"}}</span>
+				    	<span class="label label-danger" ng-if="movimiento.estatus == '4'">Cancelado {{movimiento.fechaSolicitud | date : "HH:mm:ss"}}</span>
 			    </td>
 			    <td class="text-center">
 				    <button ng-click="la.cambiarEstatus(movimiento._id, '3')" class="btn btn-success" ng-if="movimiento.estatus == '1' || movimiento.estatus == '2'">Enviar</button>
