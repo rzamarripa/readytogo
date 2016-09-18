@@ -1,5 +1,16 @@
 <ion-view view-title="Historial" id="page3">
-  <ion-content padding="true" class="has-header">
-  	
+  	<ion-content padding="true" class="has-header">
+  		<ion-list >
+            <ion-item class="item-avatar item-icon-right" ng-repeat="movimiento in hst.movimientos" ng-init="alumno = hst.getAlumno(movimiento.alumno_id)">
+            	<img ng-src="{{hst.tieneFoto(alumno.sexo, alumno.fotografia)}}" alt="{{alumno.profile.nombreCompleto}}">
+                <h2 >{{alumno.nombre}} {{movimiento.fechaSolicitud|date:'dd/MM/yyyy'}}</h2>
+                <p ng-if="movimiento.estatus<3  ">Solicitado: {{movimiento.fechaSolicitud|date:'hh:mm'}}
+                &emsp;Enviado: Pendiente</p>
+                <p ng-if="movimiento.estatus==3  ">Solicitado: {{movimiento.fechaSolicitud|date:'hh:mm'}}
+                &emsp;Enviado: {{movimiento.fechaEnvio|date:'hh:mm'}}}</p>
+				<p ng-if="movimiento.estatus==4">Cancelado: {{movimiento.fechaCancelacion|date:'hh:mm'}}</p>
+                
+            </ion-item>
+        </ion-list>
 	</ion-content>
 </ion-view>

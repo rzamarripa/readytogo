@@ -48,6 +48,7 @@ jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
 jquery@1.11.4
 jss:flag-icon@0.7.3
+kevohagan:ramda@0.13.0
 lai:collection-extensions@0.1.4
 launch-screen@1.0.4
 less@2.5.1
@@ -66,6 +67,7 @@ mongo@1.1.3
 mongo-id@1.0.1
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
+nucleuside:live-update@0.3.3
 observe-sequence@1.0.7
 ordered-dict@1.0.4
 pbastowski:angular-babel@1.0.9

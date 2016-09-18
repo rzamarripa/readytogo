@@ -16,7 +16,7 @@ function AccountCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log
 	
 	this.subscribe('movimientos',()=>{
 			return [{
-						alumno_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}
+						alumno_id :{$in:Meteor.user() && Meteor.user().profile  && Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}
 					}];
 	});
 
