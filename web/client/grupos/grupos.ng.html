@@ -14,14 +14,22 @@
 				    	<label>Grupo *</label>
 				    	<input name="grupo" type="text" class="form-control" placeholder="Grupo" ng-model="gpo.grupo.grupo" required="">
 			    	</div>
-			    	<div class="col-sm-8" valida>					    
+			    	<div class="col-sm-4" valida>					    
 				    	<label>Maestro *</label>
 				    	<select name="maestro" class="form-control select2"  placeholder="Seleccione" ng-model="gpo.grupo.maestro_id" required="">
 									<option  value="{{maestro._id}}" ng-repeat="maestro in gpo.usuarios">
 										{{maestro.profile.nombre}} {{maestro.profile.apPaterno}} {{maestro.profile.apMaterno}}
 									</option>
 							</select>	
-			    	</div>		    				    	    
+			    	</div>
+			    	<div class="col-sm-4" valida>
+							<label >Campus *</label>
+								<select name="campus" class="form-control select2" placeholder="Seleccione" ng-model="gpo.grupo.campus_id" required>
+									<option  value="{{campu._id}}" ng-repeat="campu in gpo.campus">
+										{{campu.nombre}}
+									</option>
+								</select>
+					  </div>		    				    	    
 			    </div>
 					<h4>Alumnos</h4>
 					<div class="well">	    

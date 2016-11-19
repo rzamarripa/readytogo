@@ -14,7 +14,7 @@ Meteor.methods({
 	    throw new Meteor.Error(403, "Usted no tiene permiso para entrar a " + vista);
 	  }
 	},
-	updateUsuario: function (usuario, rol) {		
+	updateUsuario: function (usuario, rol) {
 	  var user = Meteor.users.findOne({"_id" : usuario._id});
 	  Meteor.users.update({_id: user._id}, {$set:{
 			username: usuario.username,

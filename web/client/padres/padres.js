@@ -12,7 +12,12 @@ function PadresCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 	});
 	
 	this.subscribe('alumnos',()=>{
-			return [{estatus: true}]
+			return [{campus_id: this.getReactively("pad.padres.campus_id")
+							,estatus: true}]
+	});
+	
+	this.subscribe('campus',()=>{
+			return [{estatus : true}]
 	});
 	
   this.helpers({
@@ -21,7 +26,10 @@ function PadresCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 	  },
 	  alumnos : () => {
 		  return Alumnos.find();
-	  }
+	  },
+	  campus : () => {
+		  return Campus.find({});
+	  },
   });
   
   this.nuevo = true;  
@@ -56,9 +64,9 @@ function PadresCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 	
 	this.editar = function(id)
 	{	
-			console.log(id);
+			//console.log(id);
 	    this.padre = Meteor.users.findOne({_id:id});
-	    console.log(this.padre);
+	    //console.log(this.padre);
 	    this.hijos_id = angular.copy(this.padre.profile.hijos_id);
 			this.action = false;
 			$('.collapse').collapse('show');
@@ -71,7 +79,8 @@ function PadresCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 		        toastr.error('Error al guardar los datos.');
 		        return;
 		  }
-			
+			padre.profile.hijos_id = [];
+			padre.profile.hijos_id = angular.copy(this.hijos_id);
 			Meteor.call('updateUsuario', padre, 'Padres');
 			toastr.success('Actualizado correctamente.');
 			$('.collapse').collapse('hide');

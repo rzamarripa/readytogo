@@ -15,12 +15,11 @@ function listaAlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toa
   
   
 	this.subscribe('grupos',()=>{
-			return [{estatus: true, _id: $stateParams.grupo_id }]
+			return [{_id: $stateParams.grupo_id,estatus: true }]
 	});
     
   this.subscribe('movimientos', () => {
-	  console.log(this.fechaInicio, this.fechaFin);
-	  return [{ fechaSolicitud : { $gte : this.fechaInicio, $lt : this.fechaFin}, grupo_id : $stateParams.grupo_id}]
+	  return [{ grupo_id : $stateParams.grupo_id, fechaSolicitud : { $gte : this.fechaInicio, $lt : this.fechaFin}}]
   });
   	
   this.helpers({
@@ -29,7 +28,30 @@ function listaAlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toa
 	  },
 	  movimientos : () => {
 		  return Movimientos.find();
-	  }
+	  },
+	  /*
+	  movimientosAlumnos : () => {
+			if(mov.ready()){
+				
+				_.each(rc.movimientos, function(movimiento){
+					console.log(movimiento);
+					for (i=0;i<rc.grupo.alumnos.length;i++)
+					{
+						if(gpo.ready())
+						{
+							if (movimiento.alumno_id == rc.grupo.alumnos[i]._id)
+							{
+									console.log(rc.grupo.alumnos[i]._id);
+									movimiento.nombreCompleto = rc.grupo.alumnos[i].nombre + " " + rc.grupo.alumnos[i].apPaterno + " " + rc.grupo.alumnos[i].apMaterno;
+									break;
+							}
+						}	
+					}
+				})
+			}
+			
+		}
+		*/
   });
   
   this.nuevo = true;  
