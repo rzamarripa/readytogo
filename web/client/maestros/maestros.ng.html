@@ -52,6 +52,14 @@
 			    		<label>Correo</label>
 				    	<input type="text" class="form-control" placeholder="Correo" ng-model="mae.maestro.profile.correo">
 			    	</div>
+			    	<div class="col-sm-4" valida>
+							<label >Campus *</label>
+								<select name="campus" class="form-control select2" placeholder="Seleccione" ng-model="mae.maestro.profile.campus_id" required>
+									<option  value="{{campu._id}}" ng-repeat="campu in mae.campus">
+										{{campu.nombre}}
+									</option>
+								</select>
+					  </div>
 			    	<div class="col-sm-4">
 						<label for="talla">Fotografía</label>
 						<button class="btn btn-primary" ng-click="mae.tomarFoto()"><i class="fa fa-camera"></i></button>

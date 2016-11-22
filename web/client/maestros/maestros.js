@@ -6,13 +6,21 @@ function MaestrosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr)
 	let rc = $reactive(this).attach($scope);
 
   this.action = true;
+  
 	this.subscribe('usuarios',()=>{
 			return [{}]
+	});
+	
+	this.subscribe('campus',()=>{
+			return [{estatus : true}]
 	});
 
   this.helpers({
 	  usuarios : () => {
 		  return Meteor.users.find({roles: ["Maestro"]});
+	  },
+	  campus : () => {
+		  return Campus.find({});
 	  },
   });
   

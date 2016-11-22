@@ -9,10 +9,17 @@ function AlumnosCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) 
 	this.subscribe('alumnos',()=>{
 			return [{estatus : true}]
 	});
+	
+	this.subscribe('campus',()=>{
+			return [{estatus : true}]
+	});
 
   this.helpers({
 	  alumnos : () => {
 		  return Alumnos.find({});
+	  },
+	  campus : () => {
+		  return Campus.find({});
 	  },
   });
   

@@ -25,6 +25,10 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 			return [{estatus: true}]
 	});
 	
+	this.subscribe('campus',()=>{
+			return [{estatus : true}]
+	});
+	
 
   this.helpers({
 	  alumnosTotales : () => {
@@ -35,6 +39,9 @@ function GruposCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
 	  },
 	  grupos : () => {
 		  return Grupos.find();
+	  },
+	  campus : () => {
+		  return Campus.find({});
 	  },
   });
   

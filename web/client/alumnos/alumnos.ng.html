@@ -28,6 +28,14 @@
 			    	</div>
 			    </div>
 			    <div class="row">
+				    <div class="col-sm-4" valida>
+							<label >Campus *</label>
+								<select name="campus" class="form-control select2" placeholder="Seleccione" ng-model="alu.alumno.campus_id" required>
+									<option  value="{{campu._id}}" ng-repeat="campu in alu.campus">
+										{{campu.nombre}}
+									</option>
+								</select>
+					  </div>
 			    	<div class="col-sm-3" valida>
 							<label for="tipo">Sexo *</label>
 					    <select name="tipo" ng-model="alu.alumno.sexo" class="form-control" required="">

@@ -161,4 +161,14 @@ angular.module('verificaciones').config(['$injector', function ($injector) {
 	      }]
 	    }
     })
+    .state('root.campus', {
+      url: '/campus',
+      templateUrl: 'client/campus/campus.ng.html',
+      controller: 'CampusCtrl as cam',
+      resolve: {
+	      "currentUser": ["$meteor", function($meteor){
+	        return $meteor.requireUser();
+	      }]
+	    }
+    })
 }]);     
