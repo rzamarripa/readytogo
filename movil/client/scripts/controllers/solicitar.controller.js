@@ -18,23 +18,26 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 	end.setHours(23,59,59,999);
 
 	this.subscribe('alumnos',()=>{
-			return [{_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}}]
+			return [{_id :{$in:Meteor.user() && Meteor.user().profile  && Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}}]
 	});
 	this.subscribe('grupos',()=>{
 			return [{estatus:true}]
 	});
 	this.subscribe('movimientos',()=>{
 			return [{
-						alumno_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]},
+						alumno_id :{$in:Meteor.user() && Meteor.user().profile  && Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]},
 						fechaSolicitud:{$gte:start,$lte:end}
 					}];
 	});
 	this.helpers({
 		alumnos : () => {
-			return Alumnos.find({_id :{$in:Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}});
+			return Alumnos.find({_id :{$in:Meteor.user() && Meteor.user().profile  && Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]}});
 		},
 		movimientos: ()=>{
-			return Movimientos.find();
+			return Movimientos.find({
+						alumno_id :{$in:Meteor.user() && Meteor.user().profile  && Meteor.user().profile.hijos_id? Meteor.user().profile.hijos_id:[]},
+						fechaSolicitud:{$gte:start,$lte:end}
+					});
 		}
  	});
 	this.estado = function(alumno){
@@ -59,7 +62,7 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 	
 	this.color = function(alumno){
 		//console.log(this.movimientos);
-		var mov = Movimientos.findOne({alumno_id:alumno._id});
+		var mov = Movimientos.findOne({alumno_id:alumno._id,fechaSolicitud:{$gte:start,$lte:end}});
 		
 		if(!mov)
 			return 'dark';
@@ -78,21 +81,21 @@ function SolicitarCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $l
 	}
 	
 	this.solicitado = function(alumno){
-		var mov = Movimientos.findOne({alumno_id:alumno._id});
+		var mov = Movimientos.findOne({alumno_id:alumno._id,fechaSolicitud:{$gte:start,$lte:end}});
 		if(!mov)
 			return false;
 		return mov.estatus==1 || mov.estatus == 2 || mov.estatus==3;
 	}
 	this.cancelar = function(alumno,slidingItem){
 		console.log("cancelar")
-		var mov = Movimientos.findOne({alumno_id:alumno._id});
+		var mov = Movimientos.findOne({alumno_id:alumno._id,fechaSolicitud:{$gte:start,$lte:end}});
 		if(mov){
 			Movimientos.update({_id:mov._id}, {$set : {estatus : "4",fechaCancelacion:new Date()}});
 		}
 		$ionicListDelegate.closeOptionButtons();
 	}
 	this.solicitar = function(alumno){
-		var mov = Movimientos.findOne({alumno_id:alumno._id});
+		var mov = Movimientos.findOne({alumno_id:alumno._id,fechaSolicitud:{$gte:start,$lte:end}});
 		console.log("solicitar")
 
 		if(!mov){

@@ -3,9 +3,9 @@ App.accessRule('https://*');
 
 
 App.info({
-  id: 'com.masoft.ready2go',
-  name: 'Ready2Go',
-  description: 'Ready2Go',
+  id: 'com.masoft.ready2get',
+  name: 'Ready2Get',
+  description: 'Ready2Get',
   author: 'Masoft',
   email: 'francisco@masoft.mx',
   website: 'http://masoft.mx',
